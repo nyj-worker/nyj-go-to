@@ -29,7 +29,9 @@ export const FilterPanel: React.FC<FilterPanelProps> = ({
   hasUserLocation,
   favoriteCount = 0,
 }) => {
-  const [isCollapsed, setIsCollapsed] = useState(false);
+  const [isCollapsed, setIsCollapsed] = useState(() => {
+    return typeof window !== 'undefined' && window.innerWidth <= 768;
+  });
   const [activeTab, setActiveTab] = useState<'region' | 'category' | 'tag' | 'subway'>('region');
 
   // 다중 선택 토글 헬퍼
@@ -49,6 +51,13 @@ export const FilterPanel: React.FC<FilterPanelProps> = ({
     Boolean(filterState.selectedStationId) ||
     Boolean(filterState.searchQuery);
 
+  const activeFilterCount =
+    filterState.selectedRegions.length +
+    filterState.selectedCategories.length +
+    filterState.selectedFoodTags.length +
+    (filterState.onlyFavorites ? 1 : 0) +
+    (filterState.selectedStationId ? 1 : 0);
+
   return (
     <div className="filter-panel-wrapper">
       {/* 모바일 접기/펼치기 헤더 */}
@@ -59,16 +68,18 @@ export const FilterPanel: React.FC<FilterPanelProps> = ({
           onClick={() => setIsCollapsed(!isCollapsed)}
           aria-expanded={!isCollapsed}
         >
-          <Filter size={16} />
+          <Filter size={15} />
           <span>상세 필터 검색</span>
-          {hasActiveFilters && <span className="active-dot" />}
-          {isCollapsed ? <ChevronDown size={16} /> : <ChevronUp size={16} />}
+          {activeFilterCount > 0 && (
+            <span className="active-filter-badge">{activeFilterCount}</span>
+          )}
+          {isCollapsed ? <ChevronDown size={15} /> : <ChevronUp size={15} />}
         </button>
 
         {/* 선택된 조건 초기화 버튼 */}
         {hasActiveFilters && (
           <button type="button" className="reset-all-btn" onClick={onResetFilters}>
-            <RotateCcw size={13} />
+            <RotateCcw size={12} />
             <span>필터 초기화</span>
           </button>
         )}

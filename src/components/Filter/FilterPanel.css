@@ -32,6 +32,20 @@
   background-color: var(--accent-orange);
 }
 
+.active-filter-badge {
+  background-color: var(--accent-orange);
+  color: var(--surface-white);
+  font-size: 0.72rem;
+  font-weight: 800;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 1;
+}
+
 .reset-all-btn {
   display: flex;
   align-items: center;
@@ -330,3 +344,64 @@
   color: var(--primary-deep-green);
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
 }
+
+/* 모바일 전용 필터 패널 슬림화 */
+@media (max-width: 768px) {
+  .filter-header-bar {
+    padding: 8px 12px;
+  }
+
+  .filter-body {
+    padding: 8px 12px;
+  }
+
+  .filter-tabs-row {
+    margin-bottom: 8px;
+    padding-bottom: 6px;
+    gap: 6px;
+  }
+
+  .filter-tabs {
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    width: 100%;
+    padding-bottom: 2px;
+  }
+
+  .filter-tab-btn {
+    white-space: nowrap;
+    flex-shrink: 0;
+    padding: 5px 10px;
+    font-size: 0.78rem;
+  }
+
+  .filter-fav-toggle-btn {
+    padding: 4px 10px;
+    font-size: 0.76rem;
+    white-space: nowrap;
+    flex-shrink: 0;
+  }
+
+  .filter-bottom-bar {
+    padding: 6px 12px;
+    gap: 8px;
+  }
+
+  .results-count-text {
+    font-size: 0.8rem;
+  }
+
+  .sort-select {
+    height: 30px;
+    font-size: 0.74rem;
+    padding: 0 6px 0 22px;
+  }
+
+  .view-toggle-btn {
+    height: 26px;
+    padding: 0 8px;
+    font-size: 0.74rem;
+  }
+}
+

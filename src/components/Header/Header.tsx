@@ -37,7 +37,7 @@ export const Header: React.FC<HeaderProps> = ({
             <p className="service-subtitle">우리 동네 맛집부터 주말에 가고 싶은 베이커리까지</p>
           </div>
         </div>
-        <span className="source-tag">남양주시 인스타그램 소개 업소 모음</span>
+        <span className="source-tag">남양주시민이 직접 추천한 ‘우리 동네 찐맛집’</span>
       </div>
 
       <div className="header-center">
